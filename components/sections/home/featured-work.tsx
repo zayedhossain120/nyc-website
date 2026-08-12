@@ -2,38 +2,17 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { CASE_STUDIES } from "@/lib/data/case-studies";
 import { cn } from "@/lib/utils";
 
-const CASE_STUDIES = [
-  {
-    slug: "solstice-health",
-    client: "Solstice Health",
-    industry: "Healthcare",
-    metric: "+340% patient retention",
-    tags: ["Next.js", "NestJS", "Patient Portal"],
-    gradient: "from-accent-secondary/25 via-surface to-surface",
-  },
-  {
-    slug: "kettletown-supply-co",
-    client: "Kettletown Supply Co.",
-    industry: "E-Commerce",
-    metric: "2.4x checkout conversion",
-    tags: ["Next.js", "AI Recommendations", "Stripe"],
-    gradient: "from-accent-primary/20 via-surface to-surface",
-  },
-  {
-    slug: "meridian-freight",
-    client: "Meridian Freight",
-    industry: "Logistics SaaS",
-    metric: "18 hrs/week saved via automation",
-    tags: ["AI Automation", "Dispatch Workflow", "RAG"],
-    gradient: "from-accent-warm/20 via-surface to-surface",
-  },
-];
+const FEATURED_SLUGS = ["solstice-health", "kettletown-supply-co", "meridian-freight"];
+const FEATURED_STUDIES = FEATURED_SLUGS.map((slug) =>
+  CASE_STUDIES.find((study) => study.slug === slug)!,
+);
 
 export function FeaturedWork() {
   return (
-    <section className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
+    <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading eyebrow="Featured Work" title="Results, not just deliverables." />
         <Button href="/work" variant="outline">
@@ -41,7 +20,7 @@ export function FeaturedWork() {
         </Button>
       </div>
       <div className="grid gap-6 md:grid-cols-3">
-        {CASE_STUDIES.map((study) => (
+        {FEATURED_STUDIES.map((study) => (
           <Link
             key={study.slug}
             href={`/work/${study.slug}`}
@@ -49,7 +28,7 @@ export function FeaturedWork() {
           >
             <div
               className={cn(
-                "flex h-48 items-end bg-gradient-to-br p-5",
+                "flex h-48 items-end bg-linear-to-br p-5",
                 study.gradient,
               )}
             >
@@ -63,7 +42,7 @@ export function FeaturedWork() {
                 <Badge tone="neutral">{study.industry}</Badge>
               </div>
               <div className="flex flex-wrap gap-2 font-mono text-xs text-muted">
-                {study.tags.map((tag) => (
+                {study.techStack.slice(0, 3).map((tag) => (
                   <span key={tag}>#{tag.replace(/\s+/g, "")}</span>
                 ))}
               </div>

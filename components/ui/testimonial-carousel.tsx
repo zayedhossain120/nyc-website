@@ -54,7 +54,7 @@ export function TestimonialCarousel({ testimonials, className }: TestimonialCaro
             <p className="text-xl leading-relaxed text-primary sm:text-2xl">
               &ldquo;{active.quote}&rdquo;
             </p>
-            <footer className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <span
                   aria-hidden
@@ -75,7 +75,7 @@ export function TestimonialCarousel({ testimonials, className }: TestimonialCaro
               <span className="rounded-full border border-accent-primary/40 bg-accent-primary/10 px-3 py-1 font-mono text-xs text-accent-primary">
                 {active.metric}
               </span>
-            </footer>
+            </div>
           </motion.blockquote>
         </AnimatePresence>
       </div>

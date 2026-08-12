@@ -33,9 +33,9 @@ const FAQS = [
 export function FaqPreview() {
   return (
     <section className="border-t border-subtle">
-      <div className="mx-auto flex max-w-4xl flex-col gap-10 px-6 py-24 md:px-16">
+      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
         <SectionHeading eyebrow="FAQ" title="Common questions, answered up front." />
-        <Accordion items={FAQS} />
+        <Accordion items={FAQS} className="max-w-3xl" />
         <Button href="/faq" variant="ghost" className="w-fit">
           View All FAQs →
         </Button>

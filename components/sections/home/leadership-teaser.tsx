@@ -10,7 +10,7 @@ const LEADERS = [
 
 export function LeadershipTeaser() {
   return (
-    <section className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
+    <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
       <SectionHeading eyebrow="Leadership" title="Senior operators, not account managers." />
       <div className="grid gap-8 sm:grid-cols-3">
         {LEADERS.map((leader) => (
