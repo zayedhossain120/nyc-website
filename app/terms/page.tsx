@@ -4,6 +4,7 @@ import { LegalPage } from "@/components/sections/legal/legal-page";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms governing use of this site and engagements with Vertex & Co.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
@@ -11,6 +12,7 @@ export default function TermsPage() {
     <LegalPage
       eyebrow="Legal"
       title="Terms of Service"
+      path="/terms"
       updated="August 12, 2026"
       intro="These terms govern your use of this website and any services engagement with Vertex & Co. By engaging us, you agree to the terms below alongside your signed statement of work."
       sections={[

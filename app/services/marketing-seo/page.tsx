@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { PillarPage } from "@/components/sections/services/pillar-page";
 
 export const metadata: Metadata = {
-  title: "Marketing & Growth",
+  title: "NYC Local SEO, AEO/GEO & Paid Ads Agency",
   description:
-    "Local SEO, AEO/GEO, Google & Meta Ads, and content/social management from Vertex & Co.",
+    "Local SEO across Manhattan, Brooklyn, Queens, the Bronx, and Staten Island, plus AEO/GEO, Google & Meta Ads, and content/social management from Vertex & Co.",
+  alternates: { canonical: "/services/marketing-seo" },
 };
 
 export default function MarketingSeoPage() {

@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
 import { FinalCta } from "@/components/sections/home/final-cta";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Accordion } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { FAQ_CATEGORIES } from "@/lib/data/faqs";
+import { breadcrumbSchema, faqPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
-  title: "FAQ",
+  title: "FAQ | Software, AI Automation & SEO Questions Answered",
   description:
-    "Answers to common questions about working with Vertex & Co. — service areas, pricing, IP ownership, AEO/GEO, and AI automation ROI.",
+    "Answers to common questions about working with Vertex & Co., New York's software development and AI automation agency — service areas, pricing, IP ownership, AEO/GEO, and AI automation ROI.",
+  alternates: { canonical: "/faq" },
 };
 
 export default function FaqPage() {
+  const allFaqItems = FAQ_CATEGORIES.flatMap((group) => group.items);
+
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={[
+          faqPageSchema(allFaqItems),
+          breadcrumbSchema([{ name: "Home", path: "/" }, { name: "FAQ", path: "/faq" }]),
+        ]}
+      />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="primary">FAQ</Badge>

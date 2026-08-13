@@ -5,6 +5,10 @@ import { NoiseOverlay } from "@/components/effects/noise-overlay";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { JsonLd } from "@/components/seo/json-ld";
+import { BUSINESS, SERVICE_KEYWORDS } from "@/lib/seo/business";
+import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
+import { SITE_URL } from "@/lib/site-config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,12 +22,42 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Vertex & Co. | NYC Software, AI Automation & Growth Agency",
+    default: "Vertex & Co. | NYC Software Development, AI Automation & Growth Agency",
     template: "%s | Vertex & Co.",
   },
-  description:
-    "Vertex & Co. is the New York City agency high-growth companies hire for production-grade Next.js/NestJS engineering, custom AI agents, and paid + organic growth systems — under one roof, one team, one accountable partner.",
+  description: BUSINESS.description,
+  keywords: [...SERVICE_KEYWORDS],
+  authors: [{ name: BUSINESS.name, url: SITE_URL }],
+  creator: BUSINESS.name,
+  publisher: BUSINESS.name,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: BUSINESS.name,
+    title: "Vertex & Co. | NYC Software Development, AI Automation & Growth Agency",
+    description: BUSINESS.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vertex & Co. | NYC Software Development, AI Automation & Growth Agency",
+    description: BUSINESS.description,
+  },
 };
 
 export const viewport: Viewport = {
@@ -38,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-void text-primary">
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <SmoothScrollProvider>
           <CustomCursor />
           <NoiseOverlay />

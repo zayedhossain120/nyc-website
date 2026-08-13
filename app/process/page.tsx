@@ -1,16 +1,31 @@
 import type { Metadata } from "next";
 import { FinalCta } from "@/components/sections/home/final-cta";
 import { ProcessTimeline } from "@/components/sections/process/process-timeline";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
+import { PROCESS_STEPS } from "@/lib/data/process";
+import { breadcrumbSchema, howToSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
-  title: "Process",
-  description: "Vertex & Co.'s 21-day engagement methodology, from discovery to launch.",
+  title: "Our Process | How We Build Software & AI Automation Systems",
+  description:
+    "Vertex & Co.'s 21-day engagement methodology, from discovery to launch — the same four-phase process behind every NYC software, AI automation, and growth engagement.",
+  alternates: { canonical: "/process" },
 };
 
 export default function ProcessPage() {
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={[
+          howToSchema({
+            name: "How Vertex & Co. Builds Software and AI Automation Systems",
+            description: "The four-phase, 21-day engagement methodology Vertex & Co. follows on every project.",
+            steps: PROCESS_STEPS.map((step) => ({ name: step.title, text: step.description })),
+          }),
+          breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Process", path: "/process" }]),
+        ]}
+      />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="warm">Process</Badge>

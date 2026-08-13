@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { FinalCta } from "@/components/sections/home/final-cta";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { StatCounter } from "@/components/ui/stat-counter";
+import { aboutPageSchema, breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Us | NYC Engineering-First Digital Agency",
   description:
-    "Vertex & Co. is New York's engineering-first digital agency — senior-only, full IP ownership, no outsourcing.",
+    "Vertex & Co. is New York's engineering-first digital agency — senior-only, full IP ownership, no outsourcing. Meet the team behind the work.",
+  alternates: { canonical: "/about" },
 };
 
 const VALUES = [
@@ -44,6 +47,7 @@ const LEADERS = [
 export default function AboutPage() {
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd data={[aboutPageSchema(), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "About", path: "/about" }])]} />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="secondary">About</Badge>

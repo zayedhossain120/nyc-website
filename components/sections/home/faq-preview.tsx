@@ -2,7 +2,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const FAQS = [
+export const HOME_FAQ_PREVIEW = [
   {
     question: "Do you work with companies outside NYC?",
     answer:
@@ -35,7 +35,7 @@ export function FaqPreview() {
     <section className="border-t border-subtle">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
         <SectionHeading eyebrow="FAQ" title="Common questions, answered up front." />
-        <Accordion items={FAQS} className="max-w-3xl" />
+        <Accordion items={HOME_FAQ_PREVIEW} className="max-w-3xl" />
         <Button href="/faq" variant="ghost" className="w-fit">
           View All FAQs →
         </Button>

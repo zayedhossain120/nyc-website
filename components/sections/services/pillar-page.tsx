@@ -1,17 +1,25 @@
 import Link from "next/link";
 import { FinalCta } from "@/components/sections/home/final-cta";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CASE_STUDIES, type CaseStudyCategory } from "@/lib/data/case-studies";
 import { SERVICES, SERVICE_PILLARS, type ServicePillar } from "@/lib/data/services";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
 
 const PILLAR_CASE_STUDY_CATEGORY: Record<ServicePillar, CaseStudyCategory> = {
   "software-development": "web-apps",
   "ai-automation": "ai-automation",
   "marketing-seo": "marketing-campaigns",
+};
+
+const PILLAR_SERVICE_TYPE: Record<ServicePillar, string> = {
+  "software-development": "Software Development",
+  "ai-automation": "AI Automation & Workflow Integration",
+  "marketing-seo": "Digital Marketing & SEO",
 };
 
 export function PillarPage({ pillarId }: { pillarId: ServicePillar }) {
@@ -23,6 +31,21 @@ export function PillarPage({ pillarId }: { pillarId: ServicePillar }) {
 
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: pillar.title,
+            description: pillar.description,
+            path: pillar.href,
+            serviceType: PILLAR_SERVICE_TYPE[pillarId],
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: pillar.title, path: pillar.href },
+          ]),
+        ]}
+      />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Link href="/services" className="text-sm text-secondary hover:text-primary">

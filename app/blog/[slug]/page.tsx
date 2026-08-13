@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PostBody } from "@/components/sections/blog/post-body";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { BLOG_POSTS, getBlogPostBySlug } from "@/lib/data/blog-posts";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo/schema";
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
@@ -16,6 +18,12 @@ export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promis
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      type: "article",
+      publishedTime: post.publishedAt,
+      authors: [post.author.name],
+    },
   };
 }
 
@@ -33,6 +41,22 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
 
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={[
+          blogPostingSchema({
+            headline: post.title,
+            description: post.excerpt,
+            path: `/blog/${post.slug}`,
+            authorName: post.author.name,
+            datePublished: post.publishedAt,
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Insights", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
       <section className="px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
           <Link href="/blog" className="text-sm text-secondary hover:text-primary">

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CASE_STUDIES, CATEGORY_LABELS, getCaseStudyBySlug } from "@/lib/data/case-studies";
+import { articleSchema, breadcrumbSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -16,8 +18,10 @@ export async function generateMetadata(props: PageProps<"/work/[slug]">): Promis
   const study = getCaseStudyBySlug(slug);
   if (!study) return {};
   return {
-    title: `${study.client} Case Study`,
-    description: study.summary,
+    title: `${study.client} Case Study | ${study.metric}`,
+    description: `${study.summary} ${study.metric} — see how Vertex & Co. delivered it.`,
+    alternates: { canonical: `/work/${slug}` },
+    openGraph: { type: "article" },
   };
 }
 
@@ -31,6 +35,20 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
 
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={[
+          articleSchema({
+            headline: `${study.client} Case Study`,
+            description: study.summary,
+            path: `/work/${study.slug}`,
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Work", path: "/work" },
+            { name: study.client, path: `/work/${study.slug}` },
+          ]),
+        ]}
+      />
       <section className={cn("bg-linear-to-br px-6 pt-20 pb-16 md:px-16 md:pt-28", study.gradient)}>
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
           <Link href="/work" className="text-sm text-secondary hover:text-primary">

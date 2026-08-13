@@ -1,21 +1,45 @@
 import type { Metadata } from "next";
 import { Estimator } from "@/components/sections/pricing/estimator";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ADD_ONS, PRICING_TIERS } from "@/lib/data/pricing";
+import { breadcrumbSchema, offerCatalogSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Pricing | Fixed-Price Web Development & AI Automation Packages",
   description:
-    "Fixed-price engagement tiers from Vertex & Co. — no hourly billing, full IP ownership, transparent add-on pricing.",
+    "Fixed-price engagement tiers from Vertex & Co., New York's software development and AI automation agency — no hourly billing, full IP ownership, transparent add-on pricing.",
+  alternates: { canonical: "/pricing" },
 };
+
+function parsePrice(price: string): number {
+  const numeric = price.replace(/[^0-9.]/g, "");
+  return Number(numeric) || 0;
+}
 
 export default function PricingPage() {
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={[
+          offerCatalogSchema({
+            name: "Vertex & Co. Engagement Tiers",
+            description: "Fixed-price software development, AI automation, and growth engagement tiers.",
+            path: "/pricing",
+            offers: PRICING_TIERS.map((tier) => ({
+              name: tier.name,
+              description: tier.description,
+              price: parsePrice(tier.price),
+              priceUnit: tier.price.includes("/mo") ? "MONTH" : undefined,
+            })),
+          }),
+          breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Pricing", path: "/pricing" }]),
+        ]}
+      />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="primary">Pricing</Badge>

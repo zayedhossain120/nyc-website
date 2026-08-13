@@ -4,6 +4,7 @@ import { LegalPage } from "@/components/sections/legal/legal-page";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Vertex & Co. collects, uses, and protects your data.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
@@ -11,6 +12,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Legal"
       title="Privacy Policy"
+      path="/privacy"
       updated="August 12, 2026"
       intro="This policy explains what information Vertex & Co. collects when you use this site or engage us for services, and how we use it."
       sections={[

@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
-  title: "Careers",
-  description: "Careers at Vertex & Co. — a senior-only, NYC engineering-first agency.",
+  title: "Careers | Join Vertex & Co. in New York City",
+  description: "Careers at Vertex & Co. — a senior-only, NYC engineering-first software development and AI automation agency.",
+  alternates: { canonical: "/careers" },
 };
 
 const PERKS = [
@@ -31,6 +34,7 @@ const PERKS = [
 export default function CareersPage() {
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }])} />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="secondary">Careers</Badge>

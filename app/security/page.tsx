@@ -4,6 +4,7 @@ import { LegalPage } from "@/components/sections/legal/legal-page";
 export const metadata: Metadata = {
   title: "Security",
   description: "Vertex & Co.'s data handling, hosting security, and compliance posture.",
+  alternates: { canonical: "/security" },
 };
 
 export default function SecurityPage() {
@@ -11,6 +12,8 @@ export default function SecurityPage() {
     <LegalPage
       eyebrow="Trust & Security"
       title="Our security posture."
+      breadcrumbLabel="Security"
+      path="/security"
       updated="August 12, 2026"
       intro="Enterprise buyers ask about this before anything else. Here is exactly how we handle your data and code — no vague assurances."
       sections={[

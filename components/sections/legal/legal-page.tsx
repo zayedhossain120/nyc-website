@@ -1,4 +1,6 @@
+import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
+import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export interface LegalSection {
   heading: string;
@@ -8,14 +10,30 @@ export interface LegalSection {
 interface LegalPageProps {
   eyebrow: string;
   title: string;
+  breadcrumbLabel?: string;
+  path: string;
   updated: string;
   intro: string;
   sections: LegalSection[];
 }
 
-export function LegalPage({ eyebrow, title, updated, intro, sections }: LegalPageProps) {
+export function LegalPage({
+  eyebrow,
+  title,
+  breadcrumbLabel,
+  path,
+  updated,
+  intro,
+  sections,
+}: LegalPageProps) {
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: breadcrumbLabel ?? title, path },
+        ])}
+      />
       <section className="px-6 pt-20 pb-16 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
           <Badge tone="neutral">{eyebrow}</Badge>
