@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -63,8 +64,16 @@ export function WorkGrid() {
                 href={`/work/${study.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-subtle transition-colors duration-300 hover:border-accent-secondary/60"
               >
-                <div className={cn("flex h-48 items-end bg-linear-to-br p-5", study.gradient)}>
-                  <span className="rounded-full border border-accent-primary/40 bg-void/60 px-3 py-1 font-mono text-xs text-accent-primary backdrop-blur-sm">
+                <div className="relative flex h-48 items-end overflow-hidden bg-surface-2 p-5">
+                  <Image
+                    src={study.images[0].src}
+                    alt={study.client}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-void/90 via-void/10 to-transparent" />
+                  <span className="relative rounded-full border border-accent-primary/40 bg-void/60 px-3 py-1 font-mono text-xs text-accent-primary backdrop-blur-sm">
                     {study.metric}
                   </span>
                 </div>

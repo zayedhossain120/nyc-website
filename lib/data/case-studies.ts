@@ -1,19 +1,24 @@
 export type CaseStudyCategory = "web-apps" | "e-commerce" | "ai-automation" | "marketing-campaigns";
 
+export interface CaseStudyImage {
+  src: string;
+  width: number;
+  height: number;
+}
+
 export interface CaseStudy {
   slug: string;
   client: string;
   industry: string;
   category: CaseStudyCategory;
   metric: string;
-  gradient: string;
+  images: CaseStudyImage[];
   summary: string;
   challenge: string;
   approach: string;
   solution: string;
   results: string[];
   techStack: string[];
-  testimonial: { quote: string; name: string; title: string };
 }
 
 export const CATEGORY_LABELS: Record<CaseStudyCategory, string> = {
@@ -23,178 +28,199 @@ export const CATEGORY_LABELS: Record<CaseStudyCategory, string> = {
   "marketing-campaigns": "Marketing Campaigns",
 };
 
+export const CATEGORY_TONE: Record<CaseStudyCategory, "primary" | "secondary" | "warm"> = {
+  "web-apps": "secondary",
+  "e-commerce": "warm",
+  "ai-automation": "primary",
+  "marketing-campaigns": "warm",
+};
+
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    slug: "solstice-health",
-    client: "Solstice Health",
-    industry: "Healthcare",
-    category: "web-apps",
-    metric: "+340% patient retention",
-    gradient: "from-accent-secondary/25 via-surface to-surface",
-    summary:
-      "A legacy patient portal was bleeding logins. We rebuilt it on Next.js and NestJS with same-day appointment booking.",
-    challenge:
-      "Solstice Health's decade-old patient portal ran on a PHP monolith with a 6.2s average load time. Patients were abandoning appointment bookings before the page finished rendering, and clinical staff had no real-time visibility into intake status.",
-    approach:
-      "We ran a two-week discovery sprint mapping every patient and staff workflow, then re-architected the portal as a Next.js 16 app with a NestJS API layer, keeping HIPAA-compliant data handling intact through a phased cutover.",
-    solution:
-      "Server-rendered booking flows, a NestJS-backed appointment engine with real-time availability, and a staff dashboard built on the same design system — shipped in three two-week increments so Solstice never had downtime.",
-    results: [
-      "+340% patient retention over two quarters",
-      "100/100 Lighthouse performance score",
-      "6.2s → 0.9s average load time",
-      "Zero HIPAA compliance incidents post-launch",
-    ],
-    techStack: ["Next.js 16", "NestJS", "PostgreSQL", "Prisma", "Tailwind v4"],
-    testimonial: {
-      quote:
-        "Vertex didn't just build our app, they rebuilt how we ship. Core Web Vitals went from 42 to 100 in one sprint.",
-      name: "Dana Whitfield",
-      title: "VP Engineering, Solstice Health",
-    },
-  },
-  {
-    slug: "kettletown-supply-co",
-    client: "Kettletown Supply Co.",
-    industry: "E-Commerce",
+    slug: "furniture-ecommerce-platform",
+    client: "Furniture E-Commerce Platform",
+    industry: "Retail & E-Commerce",
     category: "e-commerce",
-    metric: "2.4x checkout conversion",
-    gradient: "from-accent-primary/20 via-surface to-surface",
+    metric: "Full-Funnel E-Commerce UI/UX",
+    images: [{ src: "/work/furniture-ecommerce.webp", width: 2400, height: 2850 }],
     summary:
-      "A DTC outdoor gear brand needed a faster checkout and smarter product recommendations — not another Shopify theme.",
+      "A modern furniture retailer needed a storefront that felt as considered as the products it sells — from browsing to checkout.",
     challenge:
-      "Kettletown's Shopify storefront was capped at a 40% mobile checkout completion rate, and their generic \"related products\" widget wasn't moving inventory.",
+      "The brand's catalog of handcrafted furniture deserved a shopping experience that matched its quality, but the existing presence didn't reflect that positioning.",
     approach:
-      "We migrated the storefront to a headless Next.js build on top of their existing Shopify backend, then trained a lightweight recommendation model on 18 months of order history.",
+      "We designed a dark, editorial-feeling storefront that leads with lifestyle photography and lets the product speak, then layered in the commerce mechanics — filtering, cart, and checkout — without breaking that feel.",
     solution:
-      "A custom checkout flow with saved payment methods via Stripe, an AI recommendation engine surfaced at three points in the funnel, and an admin view for merchandising to override AI picks manually.",
+      "A complete design system covering the homepage, collection browsing, product cards, testimonials, and FAQ, built to extend cleanly as the catalog grows.",
     results: [
-      "2.4x checkout conversion",
-      "+31% average order value",
-      "1.1s time-to-interactive on mobile",
-      "AI recommendations drove 22% of Q1 revenue",
+      "Full homepage-to-checkout UI/UX design",
+      "Reusable product card & collection filter system",
+      "Testimonial and FAQ modules for on-page trust-building",
+      "Mobile-responsive layouts across the full funnel",
     ],
-    techStack: ["Next.js 16", "Stripe", "AI Recommendations", "Shopify Storefront API"],
-    testimonial: {
-      quote: "We finally have one team accountable for both the build and the growth numbers.",
-      name: "Priya Anand",
-      title: "Founder, Kettletown Supply Co.",
-    },
+    techStack: ["Figma", "Design System", "UI/UX Design"],
   },
   {
-    slug: "meridian-freight",
-    client: "Meridian Freight",
-    industry: "Logistics SaaS",
+    slug: "healthcare-ecommerce-platform",
+    client: "Healthcare E-Commerce Platform",
+    industry: "Healthcare & Pharmacy",
+    category: "e-commerce",
+    metric: "Pharmacy & Medical Supply UI/UX",
+    images: [{ src: "/work/healthcare-ecommerce.webp", width: 2160, height: 2538 }],
+    summary: "An online pharmacy needed a storefront that feels trustworthy first, and easy to shop second.",
+    challenge:
+      "Medical and pharmacy e-commerce has to balance clinical credibility with the fast, low-friction browsing people expect from any online store.",
+    approach:
+      "We built the design around clear categorization by health concern rather than just product type, prominent doctor and prescription trust signals, and a product grid that stays scannable even with dozens of SKUs on screen.",
+    solution:
+      "A full storefront design — hero, categorized product discovery, doctor directory, device and equipment listings, and an FAQ-driven support section.",
+    results: [
+      "Health-concern-based product discovery UI",
+      "Doctor directory & appointment booking module",
+      "Prescription upload flow design",
+      "Scannable product grid tested at 12+ items per row",
+    ],
+    techStack: ["Figma", "Design System", "UI/UX Design"],
+  },
+  {
+    slug: "ecommerce-saas-platform",
+    client: "E-Commerce SaaS Platform",
+    industry: "SaaS / E-Commerce Tooling",
+    category: "web-apps",
+    metric: "SaaS Product Marketing Site",
+    images: [{ src: "/work/ecommerce-saas.webp", width: 2400, height: 2850 }],
+    summary:
+      "An e-commerce SaaS platform needed a marketing site that could sell a genuinely technical product to non-technical store owners.",
+    challenge:
+      "The product bundles inventory, fraud detection, and delivery integrations — powerful, but easy to make feel overwhelming to a first-time visitor.",
+    approach:
+      "We broke the feature set into scannable, icon-led cards, used real product screenshots instead of abstract illustrations wherever possible, and kept the page structured around one clear action: start a store.",
+    solution:
+      "A full marketing site design — hero, live-feeling stat bar, feature grid, social proof, and a pricing section built for plan comparison at a glance.",
+    results: [
+      "9-section marketing site design, hero to footer",
+      "Feature grid covering 8 core product capabilities",
+      "3-tier pricing comparison layout",
+      "Testimonial carousel & FAQ system",
+    ],
+    techStack: ["Figma", "Design System", "UI/UX Design"],
+  },
+  {
+    slug: "smart-home-property-platform",
+    client: "Smart Home & Property Management Platform",
+    industry: "PropTech / IoT",
+    category: "web-apps",
+    metric: "Dual-Dashboard Product Design",
+    images: [
+      { src: "/work/smart-home-property-1.webp", width: 2400, height: 1536 },
+      { src: "/work/smart-home-property-2.webp", width: 1440, height: 922 },
+    ],
+    summary:
+      "A property-tech platform needed two distinct dashboards — one for controlling a smart home, one for managing property listings — that still felt like a single product.",
+    challenge:
+      "Smart home control and property/tenant management are different jobs entirely, but the client needed both under one brand without the product feeling stitched together.",
+    approach:
+      "We established one shared design language — the same cards, charts, and iconography — and applied it to two different information architectures, so switching contexts feels consistent rather than jarring.",
+    solution:
+      "A dark, data-dense smart home control dashboard covering energy, lighting, and climate, alongside a light property management view for listings, tenant search, and a global portfolio map.",
+    results: [
+      "Two full dashboard designs sharing one component system",
+      "Live device control UI for lighting, climate, and energy",
+      "Global property portfolio map view",
+      "Tenant search & leasing funnel design",
+    ],
+    techStack: ["Figma", "Design System", "Dashboard Design"],
+  },
+  {
+    slug: "fleet-management-dashboard",
+    client: "Fleet Management Dashboard",
+    industry: "Logistics & Transportation",
+    category: "web-apps",
+    metric: "Real-Time Fleet Ops Dashboard",
+    images: [{ src: "/work/fleet-management.webp", width: 2400, height: 1536 }],
+    summary:
+      "A logistics operator needed a single dashboard to track dozens of vehicles, routes, and costs at once — without it turning into a wall of numbers.",
+    challenge:
+      "Fleet dashboards live or die on information density — too little and dispatchers can't act, too much and nothing stands out.",
+    approach:
+      "We anchored the layout around one hero vehicle view, then layered live tracking, route mapping, and cost analytics into distinct zones so a dispatcher's eye has a clear path through the screen.",
+    solution:
+      "A dark, high-contrast operations dashboard covering live vehicle tracking, route maps, cost-per-mile trends, and fuel efficiency, designed to stay legible on a wall-mounted ops display.",
+    results: [
+      "Live tracking UI for 30+ simultaneous vehicles",
+      "Route map visualization with waypoint tracking",
+      "Cost-per-mile & fuel efficiency trend charts",
+      "Designed for legibility on wall-mounted displays",
+    ],
+    techStack: ["Figma", "Design System", "Dashboard Design"],
+  },
+  {
+    slug: "security-operations-dashboard",
+    client: "Security Operations Dashboard",
+    industry: "Cybersecurity / SaaS",
+    category: "web-apps",
+    metric: "XDR Security Ops Dashboard",
+    images: [{ src: "/work/security-operations.webp", width: 1440, height: 940 }],
+    summary:
+      "A cybersecurity platform needed to visualize threat data from a dozen connected tools in a single view a security analyst could scan in seconds.",
+    challenge:
+      "Security operations centers work across many integrated tools at once — cloud providers, endpoint agents, identity platforms — and the dashboard needed to unify them without hiding which system an alert came from.",
+    approach:
+      "We designed a radial threat-map as the dashboard's centerpiece, with connected-tool logos placed around it, so an analyst can see both overall risk posture and its source at a glance.",
+    solution:
+      "A full security operations dashboard — live incident feed, asset inventory, alert severity breakdown, and automated playbook status, unified around one radial threat visualization.",
+    results: [
+      "Radial threat-map visualization design",
+      "Live incident feed with severity tagging",
+      "Multi-integration asset inventory view",
+      "Automated playbook status tracking UI",
+    ],
+    techStack: ["Figma", "Design System", "Dashboard Design"],
+  },
+  {
+    slug: "learning-management-system",
+    client: "Learning Management System",
+    industry: "EdTech / SaaS",
+    category: "web-apps",
+    metric: "All-in-One LMS Product Design",
+    images: [{ src: "/work/lms-platform.webp", width: 2400, height: 2850 }],
+    summary:
+      "An LMS platform needed a marketing site and dashboard preview that could speak to both school administrators and individual educators.",
+    challenge:
+      "LMS buyers range from solo tutors to full institutions — the design needed pricing and messaging flexible enough to serve both without feeling generic to either.",
+    approach:
+      "We led with a real admin dashboard preview rather than abstract graphics, so prospective buyers could see the actual product, then built pricing around clear per-tier feature deltas.",
+    solution:
+      "A full marketing site — dashboard preview hero, feature grid, tiered pricing, testimonials, and an integrated blog — plus the admissions and attendance dashboard UI itself.",
+    results: [
+      "Live-feeling admin dashboard preview in the hero",
+      "3-tier pricing with per-plan feature breakdown",
+      "Attendance & results-tracking dashboard UI",
+      "Integrated blog & resource center design",
+    ],
+    techStack: ["Figma", "Design System", "UI/UX Design"],
+  },
+  {
+    slug: "ai-content-generation-app",
+    client: "AI Content Generation App",
+    industry: "AI / Creative Tools",
     category: "ai-automation",
-    metric: "18 hrs/week saved via automation",
-    gradient: "from-accent-warm/20 via-surface to-surface",
+    metric: "Mobile AI Generation App",
+    images: [{ src: "/work/ai-content-app.webp", width: 2160, height: 2565 }],
     summary:
-      "Dispatchers were manually re-keying freight requests from email into their TMS. We built an agent that reads, qualifies, and routes them instead.",
+      "A generative AI app needed a mobile interface that made text-to-video, image, and 3D generation feel as simple as sending a message.",
     challenge:
-      "Meridian's dispatch team processed roughly 200 inbound freight requests a week by hand — reading emails, checking capacity, and re-entering data into their TMS. Response time to shippers averaged 3 hours.",
+      "Generative AI tools can overwhelm users with options — models, aspect ratios, durations — before they've generated anything at all.",
     approach:
-      "We built a RAG-backed intake agent that parses inbound emails and PDFs, cross-references live carrier capacity, and drafts a routing recommendation for dispatcher sign-off, rather than removing the human from the loop entirely.",
+      "We collapsed the entry point to a single prompt field with a small set of format toggles, and moved advanced controls like duration and aspect ratio into a secondary row so first-time users aren't blocked by configuration.",
     solution:
-      "A NestJS automation service wired into their existing TMS via API, a vector-indexed knowledge base of carrier contracts for the agent to reason over, and a Slack approval flow so dispatchers stay in control.",
+      "A full mobile app design — a prompt-first generation screen, a content discovery browser, and a dedicated video editor with timeline, effects, and export controls.",
     results: [
-      "18 hrs/week saved across the dispatch team",
-      "3 hrs → 12 min average response time",
-      "94% of AI-drafted routes approved without edits",
-      "Zero added headcount despite 30% volume growth",
+      "Prompt-first generation flow across 3 content types",
+      "Full video editor UI with timeline & effects",
+      "Content discovery feed with category filtering",
+      "4K export flow design",
     ],
-    techStack: ["NestJS", "Pinecone", "RAG", "OpenAI API", "Slack API"],
-    testimonial: {
-      quote:
-        "Their AI automation team cut our manual intake process from 3 hours to 12 minutes per order.",
-      name: "Marcus Ionescu",
-      title: "COO, Meridian Freight",
-    },
-  },
-  {
-    slug: "ironline-legal",
-    client: "Ironline Legal",
-    industry: "Legal",
-    category: "marketing-campaigns",
-    metric: "3.2x organic traffic in 90 days",
-    gradient: "from-accent-secondary/20 via-surface to-surface",
-    summary:
-      "A personal injury firm was invisible in AI search. We rebuilt their content strategy around AEO, not just keywords.",
-    challenge:
-      "Ironline Legal ranked on page one for their core keywords but got zero citations when prospects asked ChatGPT or Perplexity for injury lawyer recommendations — a growing share of their intake funnel.",
-    approach:
-      "We audited their site against AEO/GEO structuring principles, rebuilt cornerstone pages as direct, citable answers, and layered in a local SEO push across all five boroughs.",
-    solution:
-      "Schema-marked FAQ and service pages written to be quoted verbatim by AI answer engines, a Google Business Profile overhaul, and a monthly content cadence targeting borough-specific search intent.",
-    results: [
-      "3.2x organic traffic in 90 days",
-      "Cited in Perplexity and ChatGPT answers for 6 core practice areas",
-      "+156% Google Business Profile calls",
-      "41% lower cost-per-lead vs. their prior Google Ads-only funnel",
-    ],
-    techStack: ["Technical SEO", "AEO/GEO", "Google Business Profile", "Schema.org"],
-    testimonial: {
-      quote:
-        "We started showing up in ChatGPT answers before our competitors even knew that was something to optimize for.",
-      name: "Rachel Kim",
-      title: "Managing Partner, Ironline Legal",
-    },
-  },
-  {
-    slug: "northbound-realty",
-    client: "Northbound Realty",
-    industry: "Proptech",
-    category: "web-apps",
-    metric: "-62% page load time",
-    gradient: "from-accent-primary/20 via-surface to-surface",
-    summary:
-      "A property listings platform was losing leads to a 9-second mobile load time. We rebuilt it on the App Router.",
-    challenge:
-      "Northbound's listings site was built on an older React SPA that shipped 4MB of JS on first load — a 9-second mobile load in real-world conditions, well past the point most visitors had already left.",
-    approach:
-      "We rebuilt the platform on Next.js 16's App Router with server-rendered listing pages and streaming search results, keeping their existing MLS data feed intact.",
-    solution:
-      "Server Components for listing detail pages, an edge-cached search index for instant filtering, and image optimization tuned for the high-resolution property photography their brokers rely on.",
-    results: [
-      "-62% page load time (9.1s → 3.4s on 4G)",
-      "100/100 Lighthouse performance",
-      "+47% listing page engagement",
-      "+19% qualified lead form completions",
-    ],
-    techStack: ["Next.js 16", "React Server Components", "Vercel Edge", "MLS Integration"],
-    testimonial: {
-      quote: "Our brokers stopped complaining about the website and started sending us leads instead of excuses.",
-      name: "Tomas Reyes",
-      title: "VP of Marketing, Northbound Realty",
-    },
-  },
-  {
-    slug: "vantage-fitness",
-    client: "Vantage Fitness",
-    industry: "Hospitality",
-    category: "e-commerce",
-    metric: "+58% membership signups",
-    gradient: "from-accent-warm/20 via-surface to-surface",
-    summary:
-      "A boutique gym chain needed online membership signups that didn't feel like filling out a mortgage application.",
-    challenge:
-      "Vantage Fitness ran memberships through a clunky third-party portal that took an average of 11 form steps to complete — most prospects dropped off before finishing.",
-    approach:
-      "We designed and built a three-step membership flow directly on their site, with plan comparison, instant pricing, and Stripe-based recurring billing baked in.",
-    solution:
-      "A Next.js membership funnel with real-time class-schedule previews, tiered plan cards, and automated welcome-sequence emails triggered on signup.",
-    results: [
-      "+58% membership signup completion",
-      "11 steps → 3 steps in the signup flow",
-      "-34% support tickets about billing",
-      "$180K in incremental annual recurring revenue",
-    ],
-    techStack: ["Next.js 16", "Stripe Billing", "Tailwind v4", "Resend"],
-    testimonial: {
-      quote:
-        "We used to lose people at step seven of the old signup form. Now most people are done before they'd have finished reading it.",
-      name: "Alicia Ferreira",
-      title: "Owner, Vantage Fitness",
-    },
+    techStack: ["Figma", "Mobile App Design", "UI/UX Design"],
   },
 ];
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FinalCta } from "@/components/sections/home/final-cta";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -8,7 +9,6 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { CASE_STUDIES, type CaseStudyCategory } from "@/lib/data/case-studies";
 import { SERVICES, SERVICE_PILLARS, type ServicePillar } from "@/lib/data/services";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo/schema";
-import { cn } from "@/lib/utils";
 
 const PILLAR_CASE_STUDY_CATEGORY: Record<ServicePillar, CaseStudyCategory> = {
   "software-development": "web-apps",
@@ -95,8 +95,16 @@ export function PillarPage({ pillarId }: { pillarId: ServicePillar }) {
                   href={`/work/${study.slug}`}
                   className="group flex flex-col overflow-hidden rounded-2xl border border-subtle transition-colors duration-300 hover:border-accent-secondary/60"
                 >
-                  <div className={cn("flex h-40 items-end bg-linear-to-br p-5", study.gradient)}>
-                    <span className="rounded-full border border-accent-primary/40 bg-void/60 px-3 py-1 font-mono text-xs text-accent-primary backdrop-blur-sm">
+                  <div className="relative flex h-40 items-end overflow-hidden bg-surface-2 p-5">
+                    <Image
+                      src={study.images[0].src}
+                      alt={study.client}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-void/90 via-void/10 to-transparent" />
+                    <span className="relative rounded-full border border-accent-primary/40 bg-void/60 px-3 py-1 font-mono text-xs text-accent-primary backdrop-blur-sm">
                       {study.metric}
                     </span>
                   </div>

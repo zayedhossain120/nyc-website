@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { CASE_STUDIES, CATEGORY_LABELS, getCaseStudyBySlug } from "@/lib/data/case-studies";
+import { CASE_STUDIES, CATEGORY_LABELS, CATEGORY_TONE, getCaseStudyBySlug } from "@/lib/data/case-studies";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo/schema";
-import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
   return CASE_STUDIES.map((study) => ({ slug: study.slug }));
@@ -18,8 +17,8 @@ export async function generateMetadata(props: PageProps<"/work/[slug]">): Promis
   const study = getCaseStudyBySlug(slug);
   if (!study) return {};
   return {
-    title: `${study.client} Case Study | ${study.metric}`,
-    description: `${study.summary} ${study.metric} — see how Vertex & Co. delivered it.`,
+    title: `${study.client} | ${study.metric}`,
+    description: `${study.summary} A Vertex & Co. design case study.`,
     alternates: { canonical: `/work/${slug}` },
     openGraph: { type: "article" },
   };
@@ -38,7 +37,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
       <JsonLd
         data={[
           articleSchema({
-            headline: `${study.client} Case Study`,
+            headline: study.client,
             description: study.summary,
             path: `/work/${study.slug}`,
           }),
@@ -49,22 +48,48 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
           ]),
         ]}
       />
-      <section className={cn("bg-linear-to-br px-6 pt-20 pb-16 md:px-16 md:pt-28", study.gradient)}>
+      <section className="gradient-mesh px-6 pt-20 pb-12 md:px-16 md:pt-28">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
           <Link href="/work" className="text-sm text-secondary hover:text-primary">
             ← All Work
           </Link>
           <div className="flex flex-wrap items-center gap-3">
             <Badge tone="neutral">{study.industry}</Badge>
-            <Badge tone="primary">{CATEGORY_LABELS[study.category]}</Badge>
+            <Badge tone={CATEGORY_TONE[study.category]}>{CATEGORY_LABELS[study.category]}</Badge>
           </div>
-          <h1 className="max-w-3xl text-[clamp(2.5rem,5.5vw,4rem)] leading-[1.02] font-medium tracking-tight text-primary">
+          <h1 className="max-w-3xl text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] font-medium tracking-tight text-primary">
             {study.client}
           </h1>
           <p className="max-w-2xl text-lg text-secondary">{study.summary}</p>
           <span className="w-fit rounded-full border border-accent-primary/40 bg-void/60 px-4 py-1.5 font-mono text-sm text-accent-primary backdrop-blur-sm">
             {study.metric}
           </span>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-6 md:px-16">
+        <div
+          className={
+            study.images.length > 1
+              ? "grid gap-4 sm:grid-cols-2"
+              : "grid gap-4"
+          }
+        >
+          {study.images.map((image) => (
+            <div
+              key={image.src}
+              className="overflow-hidden rounded-2xl border border-subtle bg-surface"
+            >
+              <Image
+                src={image.src}
+                alt={study.client}
+                width={image.width}
+                height={image.height}
+                sizes={study.images.length > 1 ? "(min-width: 640px) 50vw, 100vw" : "100vw"}
+                className="h-auto w-full"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -91,7 +116,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         </div>
 
         <div className="flex flex-col gap-6">
-          <h2 className="text-2xl font-medium text-primary">Results</h2>
+          <h2 className="text-2xl font-medium text-primary">What Shipped</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {study.results.map((result) => (
               <div key={result} className="rounded-2xl border border-subtle bg-surface p-5">
@@ -102,7 +127,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         </div>
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-medium text-primary">Tech Stack</h2>
+          <h2 className="text-2xl font-medium text-primary">Tools & Discipline</h2>
           <div className="flex flex-wrap gap-2">
             {study.techStack.map((tech) => (
               <Badge key={tech} tone="secondary">
@@ -111,16 +136,6 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
             ))}
           </div>
         </div>
-
-        <Card className="flex flex-col gap-4">
-          <p className="text-xl leading-relaxed text-primary sm:text-2xl">
-            &ldquo;{study.testimonial.quote}&rdquo;
-          </p>
-          <div className="flex flex-col">
-            <span className="text-sm font-medium text-primary">{study.testimonial.name}</span>
-            <span className="text-sm text-muted">{study.testimonial.title}</span>
-          </div>
-        </Card>
 
         <Button href="/contact" variant="primary" className="w-fit">
           Start a Project Like This

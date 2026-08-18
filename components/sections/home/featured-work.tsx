@@ -1,11 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CASE_STUDIES } from "@/lib/data/case-studies";
-import { cn } from "@/lib/utils";
 
-const FEATURED_SLUGS = ["solstice-health", "kettletown-supply-co", "meridian-freight"];
+const FEATURED_SLUGS = [
+  "furniture-ecommerce-platform",
+  "fleet-management-dashboard",
+  "ai-content-generation-app",
+];
 const FEATURED_STUDIES = FEATURED_SLUGS.map((slug) =>
   CASE_STUDIES.find((study) => study.slug === slug)!,
 );
@@ -14,7 +18,7 @@ export function FeaturedWork() {
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <SectionHeading eyebrow="Featured Work" title="Results, not just deliverables." />
+        <SectionHeading eyebrow="Featured Work" title="Design work, not stock templates." />
         <Button href="/work" variant="outline">
           View All Work
         </Button>
@@ -26,13 +30,16 @@ export function FeaturedWork() {
             href={`/work/${study.slug}`}
             className="group flex flex-col overflow-hidden rounded-2xl border border-subtle transition-colors duration-300 hover:border-accent-secondary/60"
           >
-            <div
-              className={cn(
-                "flex h-48 items-end bg-linear-to-br p-5",
-                study.gradient,
-              )}
-            >
-              <span className="rounded-full border border-accent-primary/40 bg-void/60 px-3 py-1 font-mono text-xs text-accent-primary backdrop-blur-sm">
+            <div className="relative flex h-48 items-end overflow-hidden bg-surface-2 p-5">
+              <Image
+                src={study.images[0].src}
+                alt={study.client}
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-void/90 via-void/10 to-transparent" />
+              <span className="relative rounded-full border border-accent-primary/40 bg-void/60 px-3 py-1 font-mono text-xs text-accent-primary backdrop-blur-sm">
                 {study.metric}
               </span>
             </div>
