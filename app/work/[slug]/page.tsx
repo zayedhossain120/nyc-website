@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { CASE_STUDIES, CATEGORY_LABELS, CATEGORY_TONE, getCaseStudyBySlug } from "@/lib/data/case-studies";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo/schema";
 
@@ -49,7 +50,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         ]}
       />
       <section className="gradient-mesh px-6 pt-20 pb-12 md:px-16 md:pt-28">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
+        <Reveal className="mx-auto flex w-full max-w-7xl flex-col gap-6">
           <Link href="/work" className="text-sm text-secondary hover:text-primary">
             ← All Work
           </Link>
@@ -64,11 +65,11 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
           <span className="w-fit rounded-full border border-accent-primary/40 bg-void/60 px-4 py-1.5 font-mono text-sm text-accent-primary backdrop-blur-sm">
             {study.metric}
           </span>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-6 md:px-16">
-        <div
+        <Reveal
           className={
             study.images.length > 1
               ? "grid gap-4 sm:grid-cols-2"
@@ -90,11 +91,11 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
               />
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 py-24 md:px-16">
-        <div className="grid gap-12 lg:grid-cols-3">
+        <Reveal className="grid gap-12 lg:grid-cols-3">
           <div className="flex flex-col gap-3">
             <h2 className="font-mono text-xs tracking-[0.15em] text-accent-secondary uppercase">
               Challenge
@@ -113,17 +114,17 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
             </h2>
             <p className="text-secondary">{study.solution}</p>
           </div>
-        </div>
+        </Reveal>
 
         <div className="flex flex-col gap-6">
           <h2 className="text-2xl font-medium text-primary">What Shipped</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {study.results.map((result) => (
               <div key={result} className="rounded-2xl border border-subtle bg-surface p-5">
                 <p className="text-sm text-primary">{result}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
 
         <div className="flex flex-col gap-4">

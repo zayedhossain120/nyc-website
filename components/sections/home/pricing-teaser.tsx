@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +33,7 @@ export function PricingTeaser() {
     <section className="border-t border-subtle">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
         <SectionHeading eyebrow="Investment" title="Fixed prices. No hourly billing, ever." />
-        <div className="grid gap-6 md:grid-cols-3">
+        <Reveal className="grid gap-6 md:grid-cols-3">
           {TIERS.map((tier) => (
             <Card
               key={tier.name}
@@ -49,7 +50,7 @@ export function PricingTeaser() {
               <p className="text-xs text-muted">{tier.cadence}</p>
             </Card>
           ))}
-        </div>
+        </Reveal>
         <Button href="/pricing" variant="ghost" className="w-fit">
           See Full Pricing & Add-Ons →
         </Button>

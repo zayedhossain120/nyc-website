@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CASE_STUDIES } from "@/lib/data/case-studies";
 
@@ -23,7 +24,7 @@ export function FeaturedWork() {
           View All Work
         </Button>
       </div>
-      <div className="grid gap-6 md:grid-cols-3">
+      <Reveal className="grid gap-6 md:grid-cols-3">
         {FEATURED_STUDIES.map((study) => (
           <Link
             key={study.slug}
@@ -59,7 +60,7 @@ export function FeaturedWork() {
             </div>
           </Link>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,10 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 
 export function ServicesHero() {
   return (
     <section className="gradient-mesh px-6 pt-20 pb-20 md:px-16 md:pt-28">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+      <Reveal className="mx-auto flex w-full max-w-7xl flex-col gap-8">
         <Badge tone="secondary">Services</Badge>
         <h1 className="max-w-3xl text-[clamp(2.5rem,5.5vw,4rem)] leading-[1.02] font-medium tracking-tight text-primary">
           Software, AI automation, and growth — under one accountable team.
@@ -22,7 +23,7 @@ export function ServicesHero() {
             See Pricing
           </Button>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

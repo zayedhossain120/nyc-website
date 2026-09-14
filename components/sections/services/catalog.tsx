@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SERVICES, SERVICE_PILLARS } from "@/lib/data/services";
 
@@ -18,7 +19,7 @@ export function ServiceCatalog() {
               Explore {pillar.title} →
             </Link>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.filter((service) => service.pillar === pillar.id).map((service) => (
               <Card key={service.title} className="flex flex-col gap-4">
                 <h3 className="text-lg font-medium text-primary">{service.title}</h3>
@@ -36,7 +37,7 @@ export function ServiceCatalog() {
                 </Badge>
               </Card>
             ))}
-          </div>
+          </Reveal>
         </div>
       ))}
     </div>

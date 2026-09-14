@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ADD_ONS, PRICING_TIERS } from "@/lib/data/pricing";
 import { breadcrumbSchema, offerCatalogSchema } from "@/lib/seo/schema";
@@ -41,7 +42,7 @@ export default function PricingPage() {
         ]}
       />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <Reveal className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="primary">Pricing</Badge>
           <h1 className="max-w-3xl text-[clamp(2.5rem,5.5vw,4rem)] leading-[1.02] font-medium tracking-tight text-primary">
             Fixed prices. No hourly billing, ever.
@@ -50,11 +51,11 @@ export default function PricingPage() {
             Every engagement is quoted as a fixed number before day one. Pick a starting point
             below, or use the estimator to scope something custom.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
-        <div className="grid gap-6 md:grid-cols-3">
+        <Reveal className="grid gap-6 md:grid-cols-3">
           {PRICING_TIERS.map((tier) => (
             <Card
               key={tier.name}
@@ -86,13 +87,13 @@ export default function PricingPage() {
               </Button>
             </Card>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-t border-subtle">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-24 md:px-16">
           <SectionHeading eyebrow="Add-Ons" title="Extend any tier." />
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {ADD_ONS.map((addOn) => (
               <div
                 key={addOn.id}
@@ -104,7 +105,7 @@ export default function PricingPage() {
                 </span>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -120,7 +121,7 @@ export default function PricingPage() {
       </section>
 
       <section className="gradient-mesh border-t border-subtle">
-        <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-24 text-center md:px-16">
+        <Reveal className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-24 text-center md:px-16">
           <Badge tone="secondary">Enterprise</Badge>
           <h2 className="text-[clamp(2rem,4.5vw,3rem)] leading-[1.05] font-medium tracking-tight text-primary">
             Need a dedicated SLA or SOC 2 readiness?
@@ -132,7 +133,7 @@ export default function PricingPage() {
           <Button href="/contact" variant="primary">
             Talk to Us About Enterprise
           </Button>
-        </div>
+        </Reveal>
       </section>
     </main>
   );

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const STEPS = [
@@ -13,7 +14,7 @@ export function ProcessTeaser() {
     <section className="border-t border-subtle">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
         <SectionHeading eyebrow="How We Work" title="A 21-day engagement, start to launch." />
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, index) => (
             <div key={step.title} className="flex flex-col gap-3 border-l border-subtle pl-5">
               <span className="font-mono text-xs text-muted">{step.range}</span>
@@ -23,7 +24,7 @@ export function ProcessTeaser() {
               <h3 className="text-base font-medium text-primary">{step.title}</h3>
             </div>
           ))}
-        </div>
+        </Reveal>
         <Button href="/process" variant="ghost" className="w-fit">
           See the Full Process →
         </Button>

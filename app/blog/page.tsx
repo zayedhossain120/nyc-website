@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
+import { Reveal } from "@/components/ui/reveal";
 import { BLOG_POSTS } from "@/lib/data/blog-posts";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
@@ -17,7 +18,7 @@ export default function BlogPage() {
     <main className="flex flex-1 flex-col">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Insights", path: "/blog" }])} />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <Reveal className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="secondary">Insights</Badge>
           <h1 className="max-w-3xl text-[clamp(2.5rem,5.5vw,4rem)] leading-[1.02] font-medium tracking-tight text-primary">
             Notes from the engineers and strategists doing the work.
@@ -26,10 +27,10 @@ export default function BlogPage() {
             Engineering deep-dives, AEO/GEO tactics, and AI automation field reports — no
             recycled listicles.
           </p>
-        </div>
+        </Reveal>
       </section>
 
-      <div className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-24 md:grid-cols-2 md:px-16">
+      <Reveal className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-24 md:grid-cols-2 md:px-16">
         {BLOG_POSTS.map((post) => (
           <Link
             key={post.slug}
@@ -52,7 +53,7 @@ export default function BlogPage() {
             </div>
           </Link>
         ))}
-      </div>
+      </Reveal>
     </main>
   );
 }

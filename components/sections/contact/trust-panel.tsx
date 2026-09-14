@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Reveal } from "@/components/ui/reveal";
 
 const POINTS = [
   { label: "Response Time", value: "Within 1 business day, guaranteed" },
@@ -9,7 +10,7 @@ const POINTS = [
 
 export function TrustPanel() {
   return (
-    <div className="flex flex-col gap-10">
+    <Reveal className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
         <Badge tone="primary">Contact</Badge>
         <h1 className="text-[clamp(2.5rem,5vw,3.5rem)] leading-[1.05] font-medium tracking-tight text-primary">
@@ -38,6 +39,6 @@ export function TrustPanel() {
           15-minute strategy call once we&apos;ve reviewed your project.
         </p>
       </div>
-    </div>
+    </Reveal>
   );
 }

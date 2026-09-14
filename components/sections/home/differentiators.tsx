@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const DIFFERENTIATORS = [
@@ -24,7 +25,7 @@ export function Differentiators() {
     <section className="border-t border-subtle bg-surface/40">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
         <SectionHeading eyebrow="Why Vertex" title="Built differently, from day one." />
-        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {DIFFERENTIATORS.map((item, index) => (
             <div key={item.title} className="flex flex-col gap-3">
               <span className="font-mono text-sm text-accent-primary">
@@ -34,7 +35,7 @@ export function Differentiators() {
               <p className="text-sm text-secondary">{item.description}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

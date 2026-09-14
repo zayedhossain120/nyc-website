@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const PILLARS = [
@@ -34,7 +35,7 @@ export function Pillars() {
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
       <SectionHeading eyebrow="What We Do" title="Three pillars, one accountable team." />
-      <div className="grid gap-6 md:grid-cols-3">
+      <Reveal className="grid gap-6 md:grid-cols-3">
         {PILLARS.map((pillar) => (
           <Card key={pillar.title} className="flex flex-col gap-4">
             <Badge tone={pillar.tone}>{pillar.title}</Badge>
@@ -55,7 +56,7 @@ export function Pillars() {
             </Link>
           </Card>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const LEADERS = [
@@ -12,7 +13,7 @@ export function LeadershipTeaser() {
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
       <SectionHeading eyebrow="Leadership" title="Senior operators, not account managers." />
-      <div className="grid gap-8 sm:grid-cols-3">
+      <Reveal className="grid gap-8 sm:grid-cols-3">
         {LEADERS.map((leader) => (
           <Link key={leader.name} href="/about" className="group flex flex-col gap-4">
             <div className="flex aspect-square items-center justify-center rounded-2xl border border-subtle bg-surface-2 font-mono text-2xl text-secondary transition-colors duration-300 group-hover:border-accent-secondary/60">
@@ -27,7 +28,7 @@ export function LeadershipTeaser() {
             </div>
           </Link>
         ))}
-      </div>
+      </Reveal>
       <Button href="/about" variant="ghost" className="w-fit">
         Meet the Full Team →
       </Button>

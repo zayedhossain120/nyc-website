@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PostBody } from "@/components/sections/blog/post-body";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
+import { Reveal } from "@/components/ui/reveal";
 import { BLOG_POSTS, getBlogPostBySlug } from "@/lib/data/blog-posts";
 import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo/schema";
 
@@ -58,7 +59,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
         ]}
       />
       <section className="px-6 pt-20 pb-16 md:px-16 md:pt-28">
-        <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
+        <Reveal className="mx-auto flex w-full max-w-3xl flex-col gap-6">
           <Link href="/blog" className="text-sm text-secondary hover:text-primary">
             ← All Insights
           </Link>
@@ -75,7 +76,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
             <span>·</span>
             <span>{post.readingTime}</span>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto w-full max-w-5xl px-6 pb-24 md:px-16">
@@ -86,7 +87,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
         <section className="border-t border-subtle">
           <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-24 md:px-16">
             <h2 className="text-xl font-medium text-primary">Related Insights</h2>
-            <div className="grid gap-6 sm:grid-cols-2">
+            <Reveal className="grid gap-6 sm:grid-cols-2">
               {related.map((item) => (
                 <Link
                   key={item.slug}
@@ -100,7 +101,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
                   </span>
                 </Link>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
       )}

@@ -3,6 +3,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
@@ -36,7 +37,7 @@ export default function CareersPage() {
     <main className="flex flex-1 flex-col">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }])} />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <Reveal className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Badge tone="secondary">Careers</Badge>
           <h1 className="max-w-3xl text-[clamp(2.5rem,5.5vw,4rem)] leading-[1.02] font-medium tracking-tight text-primary">
             Work with engineers who ship.
@@ -45,23 +46,23 @@ export default function CareersPage() {
             We're a small, senior-only team by design. No account managers between you and the
             client, no bloated approval chains between you and production.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
         <SectionHeading eyebrow="Why Vertex" title="What it's actually like here." />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PERKS.map((perk) => (
             <Card key={perk.title} className="flex flex-col gap-3">
               <h3 className="text-base font-medium text-primary">{perk.title}</h3>
               <p className="text-sm text-secondary">{perk.description}</p>
             </Card>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-t border-subtle">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-24 md:px-16">
+        <Reveal className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-24 md:px-16">
           <SectionHeading eyebrow="Open Roles" title="No open roles right now." />
           <p className="max-w-2xl text-secondary">
             We hire in bursts around client demand rather than keeping a bench. That means there's
@@ -71,7 +72,7 @@ export default function CareersPage() {
           <Button href="mailto:careers@vertexand.co" variant="primary" className="w-fit">
             Introduce Yourself
           </Button>
-        </div>
+        </Reveal>
       </section>
     </main>
   );

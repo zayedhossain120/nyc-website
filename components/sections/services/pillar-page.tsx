@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CASE_STUDIES, type CaseStudyCategory } from "@/lib/data/case-studies";
 import { SERVICES, SERVICE_PILLARS, type ServicePillar } from "@/lib/data/services";
@@ -47,7 +48,7 @@ export function PillarPage({ pillarId }: { pillarId: ServicePillar }) {
         ]}
       />
       <section className="gradient-mesh px-6 pt-20 pb-16 md:px-16 md:pt-28">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <Reveal className="mx-auto flex w-full max-w-7xl flex-col gap-8">
           <Link href="/services" className="text-sm text-secondary hover:text-primary">
             ← All Services
           </Link>
@@ -58,12 +59,12 @@ export function PillarPage({ pillarId }: { pillarId: ServicePillar }) {
           <Button href="/contact" variant="primary" className="w-fit">
             Get a Fixed-Price Quote
           </Button>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
         <SectionHeading eyebrow="What's Included" title="Capability breakdown." />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <Card key={service.title} className="flex flex-col gap-4">
               <h3 className="text-lg font-medium text-primary">{service.title}</h3>
@@ -81,14 +82,14 @@ export function PillarPage({ pillarId }: { pillarId: ServicePillar }) {
               </Badge>
             </Card>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {caseStudies.length > 0 && (
         <section className="border-t border-subtle">
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-24 md:px-16">
             <SectionHeading eyebrow="Relevant Work" title={`${pillar.title} in action.`} />
-            <div className="grid gap-6 md:grid-cols-3">
+            <Reveal className="grid gap-6 md:grid-cols-3">
               {caseStudies.map((study) => (
                 <Link
                   key={study.slug}
@@ -114,7 +115,7 @@ export function PillarPage({ pillarId }: { pillarId: ServicePillar }) {
                   </div>
                 </Link>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
       )}
