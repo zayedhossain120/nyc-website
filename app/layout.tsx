@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { CustomCursor } from "@/components/effects/custom-cursor";
 import { NoiseOverlay } from "@/components/effects/noise-overlay";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { JsonLd } from "@/components/seo/json-ld";
 import { BUSINESS, SERVICE_KEYWORDS } from "@/lib/seo/business";
@@ -76,9 +74,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SmoothScrollProvider>
           <CustomCursor />
           <NoiseOverlay />
-          <SiteHeader />
           {children}
-          <SiteFooter />
         </SmoothScrollProvider>
       </body>
     </html>

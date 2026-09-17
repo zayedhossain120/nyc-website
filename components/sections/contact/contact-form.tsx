@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { useActionState, useState, type ReactNode } from "react";
-import { submitContactForm, type ContactActionState } from "@/app/contact/actions";
+import { submitContactForm, type ContactActionState } from "@/app/(site)/contact/actions";
 import { Button } from "@/components/ui/button";
 import { BUDGET_OPTIONS, SERVICE_OPTIONS } from "@/lib/schemas/contact";
 import { cn } from "@/lib/utils";
