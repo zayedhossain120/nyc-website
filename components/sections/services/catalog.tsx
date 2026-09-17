@@ -21,21 +21,23 @@ export function ServiceCatalog() {
           </div>
           <Reveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.filter((service) => service.pillar === pillar.id).map((service) => (
-              <Card key={service.title} className="flex flex-col gap-4">
-                <h3 className="text-lg font-medium text-primary">{service.title}</h3>
-                <p className="text-sm text-secondary">{service.description}</p>
-                <ul className="flex flex-col gap-1.5 text-sm text-muted">
-                  {service.includes.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="text-accent-primary">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Badge tone={pillar.tone} className="mt-auto w-fit">
-                  {service.stat}
-                </Badge>
-              </Card>
+              <Link key={service.title} href={`/services/${pillar.id}/${service.slug}`}>
+                <Card className="flex flex-col gap-4 hover:border-accent-secondary/60 transition-colors duration-300">
+                  <h3 className="text-lg font-medium text-primary">{service.title}</h3>
+                  <p className="text-sm text-secondary">{service.description}</p>
+                  <ul className="flex flex-col gap-1.5 text-sm text-muted">
+                    {service.includes.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="text-accent-primary">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Badge tone={pillar.tone} className="mt-auto w-fit">
+                    {service.stat}
+                  </Badge>
+                </Card>
+              </Link>
             ))}
           </Reveal>
         </div>

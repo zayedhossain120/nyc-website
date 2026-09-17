@@ -3,7 +3,11 @@
 import { useRef, type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-export function Card({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
+export function Card({
+  className,
+  children,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
   const ref = useRef<HTMLDivElement>(null);
 
   function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
@@ -19,7 +23,7 @@ export function Card({ className, children, ...props }: HTMLAttributes<HTMLDivEl
       ref={ref}
       onMouseMove={handleMouseMove}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-subtle bg-surface/60 p-6 backdrop-blur-sm transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-accent-secondary/60",
+        "group relative overflow-hidden h-full rounded-2xl border border-subtle bg-surface/60 p-6 backdrop-blur-sm transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-accent-secondary/60",
         className,
       )}
       {...props}

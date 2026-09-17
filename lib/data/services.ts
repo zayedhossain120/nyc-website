@@ -10,6 +10,7 @@ export interface ServicePillarInfo {
 
 export interface Service {
   pillar: ServicePillar;
+  slug: string;
   title: string;
   description: string;
   includes: string[];
@@ -43,6 +44,7 @@ export const SERVICE_PILLARS: ServicePillarInfo[] = [
 export const SERVICES: Service[] = [
   {
     pillar: "software-development",
+    slug: "nextjs-apps",
     title: "Enterprise Next.js Web Applications",
     description: "Server-rendered, edge-ready applications built for scale from day one.",
     includes: ["SSR & edge middleware", "React Server Components", "CI/CD to Vercel or your cloud"],
@@ -50,6 +52,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "software-development",
+    slug: "landing-pages",
     title: "High-Converting Landing Pages",
     description: "Pages engineered to convert, with A/B testing built into the architecture.",
     includes: ["A/B testing architecture", "Micro-animations & motion", "Copy tested against real funnels"],
@@ -57,6 +60,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "software-development",
+    slug: "design-systems",
     title: "Custom Design Systems & Component Libraries",
     description: "A token-based system your team can actually maintain.",
     includes: ["Tailwind v4 token pipeline", "Figma-to-code token sync", "WAI-ARIA accessible by default"],
@@ -64,6 +68,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "software-development",
+    slug: "speed-tuning",
     title: "Core Web Vitals & Performance Audits",
     description: "A guaranteed floor on Lighthouse, not a best-effort pass.",
     includes: ["Full CWV & bundle audit", "Guaranteed 90+ score", "Before/after performance report"],
@@ -71,6 +76,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "software-development",
+    slug: "cms-cloud",
     title: "Database, API & Cloud Architecture",
     description: "Infrastructure that doesn't fall over at your next funding round.",
     includes: ["PostgreSQL / MongoDB schema design", "GraphQL or REST API layer", "Docker & CI/CD pipelines"],
@@ -78,20 +84,15 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "software-development",
-    title: "Mobile App Development",
-    description: "One React Native codebase, shipped to iOS and Android.",
-    includes: ["React Native / Expo", "Native module integration", "App Store & Play Store launch"],
-    stat: "iOS + Android from one codebase",
-  },
-  {
-    pillar: "software-development",
-    title: "SaaS Product Engineering",
-    description: "Multi-tenant architecture, billing, and admin tooling from the first sprint.",
-    includes: ["Multi-tenant auth (org/roles)", "Stripe billing integration", "Internal admin dashboards"],
-    stat: "Multi-tenant from sprint one",
+    slug: "ui-ux-design",
+    title: "UI/UX Design & Prototyping",
+    description: "User-centered wireframes, interactive prototypes, and pixel-perfect visual design that turn complex products into intuitive experiences.",
+    includes: ["User Research & Journey Mapping", "Interactive Figma Prototypes", "Usability Testing & Iteration"],
+    stat: "Figma prototype + usability testing",
   },
   {
     pillar: "ai-automation",
+    slug: "ai-chatbots",
     title: "Custom AI Chatbots & Support Agents",
     description: "Trained on your knowledge base, not a generic prompt.",
     includes: ["Trained on internal docs/KB", "Escalation to human handoff", "24/7 resolution for tier-1 tickets"],
@@ -99,6 +100,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "ai-automation",
+    slug: "crm-automation",
     title: "Automated Lead & CRM Workflows",
     description: "Leads routed, scored, and followed up on without a human touching a spreadsheet.",
     includes: ["HubSpot / Salesforce / GoHighLevel", "Lead scoring & routing logic", "Automated follow-up sequences"],
@@ -106,6 +108,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "ai-automation",
+    slug: "llm-integration",
     title: "Custom LLM & API Integration",
     description: "RAG pipelines and fine-tuned models wired into your actual product.",
     includes: ["RAG over your proprietary data", "Vector DB (Pinecone) setup", "Fine-tuned model evaluation"],
@@ -113,6 +116,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "ai-automation",
+    slug: "process-automation",
     title: "Internal Process Automation",
     description: "The manual ops work your team dreads, automated end to end.",
     includes: ["Document parsing & extraction", "Automated report generation", "Cross-system workflow orchestration"],
@@ -120,6 +124,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "marketing-seo",
+    slug: "local-seo-pa",
     title: "Local SEO & Google Business Profile",
     description: "Rank where your buyers actually search — block by block.",
     includes: ["GBP optimization & management", "NYC borough-level local SEO", "Review & citation management"],
@@ -127,6 +132,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "marketing-seo",
+    slug: "aeo-geo",
     title: "AEO & GEO (Answer Engine Optimization)",
     description: "Structured so ChatGPT, Perplexity, and AI Overviews cite you.",
     includes: ["Answer-first content structuring", "Schema.org markup", "AI citation tracking"],
@@ -134,6 +140,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "marketing-seo",
+    slug: "google-ads",
     title: "Google Ads & PPC",
     description: "Search, Shopping, Display, and YouTube — run against real ROAS targets.",
     includes: ["Search & Shopping campaigns", "Display & YouTube retargeting", "Weekly ROAS reporting"],
@@ -141,6 +148,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "marketing-seo",
+    slug: "facebook-ads",
     title: "Meta & Instagram Ads",
     description: "Funnels built on CAPI data, not guesswork.",
     includes: ["Conversions API (CAPI) setup", "Lookalike & retargeting audiences", "Creative testing at scale"],
@@ -148,6 +156,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "marketing-seo",
+    slug: "technical-seo",
     title: "Full Technical & Organic SEO",
     description: "Crawl audits, on-page fixes, and a backlink strategy that isn't spam.",
     includes: ["Technical crawl audits", "On-page optimization", "Editorial backlink outreach"],
@@ -155,6 +164,7 @@ export const SERVICES: Service[] = [
   },
   {
     pillar: "marketing-seo",
+    slug: "content-smm",
     title: "Content Marketing & Social Media Management",
     description: "SEO-driven blogs and a social calendar your team doesn't have to think about.",
     includes: ["SEO blog content calendar", "Social media management", "Brand-voice copywriting"],

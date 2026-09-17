@@ -6,7 +6,8 @@ type BadgeTone = "neutral" | "primary" | "secondary" | "warm";
 const toneStyles: Record<BadgeTone, string> = {
   neutral: "border-strong text-secondary",
   primary: "border-accent-primary/40 bg-accent-primary/10 text-accent-primary",
-  secondary: "border-accent-secondary/40 bg-accent-secondary/10 text-accent-secondary",
+  secondary:
+    "border-accent-secondary/40 bg-accent-secondary/10 text-accent-secondary",
   warm: "border-accent-warm/40 bg-accent-warm/10 text-accent-warm",
 };
 
@@ -20,7 +21,7 @@ export function Badge({ tone = "neutral", children, className }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-xs tracking-wide uppercase",
+        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-xs tracking-wide uppercase w-fit",
         toneStyles[tone],
         className,
       )}

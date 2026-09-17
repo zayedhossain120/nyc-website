@@ -1,0 +1,23 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import {
+  ServiceDetailTemplate,
+  getServiceDetailMetadata,
+} from "@/components/sections/services/service-detail-template";
+import { getRelatedServiceDetails, getServiceDetail } from "@/lib/data/pennom-services";
+
+const SLUG = "content-smm";
+const PATH = "/services/marketing-seo/content-smm";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const service = getServiceDetail(SLUG);
+  if (!service) return {};
+  return getServiceDetailMetadata(service, PATH);
+}
+
+export default function ContentSmmPage() {
+  const service = getServiceDetail(SLUG);
+  if (!service) notFound();
+  const related = getRelatedServiceDetails(service);
+  return <ServiceDetailTemplate service={service} path={PATH} related={related} />;
+}
