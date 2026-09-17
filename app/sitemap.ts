@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { BLOG_POSTS } from "@/lib/data/blog-posts";
+import dbConnect from "@/lib/db";
+import Blog from "@/lib/models/blog";
 import { CASE_STUDIES } from "@/lib/data/case-studies";
 import { SITE_URL } from "@/lib/site-config";
 
@@ -22,7 +23,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/security", priority: 0.3, changeFrequency: "yearly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
@@ -39,12 +40,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
-    changeFrequency: "monthly",
-    priority: 0.5,
-  }));
+  let blogEntries: MetadataRoute.Sitemap = [];
+  try {
+    await dbConnect();
+    const blogs = await Blog.find({}, "slug updatedAt createdAt")
+      .sort({ createdAt: -1 })
+      .lean();
+    blogEntries = blogs.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: post.updatedAt ?? post.createdAt,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    }));
+  } catch {
+    blogEntries = [];
+  }
 
   return [...staticEntries, ...caseStudyEntries, ...blogEntries];
 }
