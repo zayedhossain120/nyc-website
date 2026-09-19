@@ -19,7 +19,7 @@ export function organizationSchema() {
     priceRange: BUSINESS.priceRange,
     foundingDate: BUSINESS.founded,
     image: `${SITE_URL}/opengraph-image`,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/logo/logo-square.png`,
     address: {
       "@type": "PostalAddress",
       streetAddress: BUSINESS.streetAddress,

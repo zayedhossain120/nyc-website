@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { LOGO_ASPECT_RATIO, getLogoDataUri } from "@/lib/og-logo";
 import { BUSINESS } from "@/lib/seo/business";
 
 export const alt = "NYC Digital Agency — NYC Software Development, AI Automation & Growth Agency";
@@ -6,6 +7,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
+  const logo = await getLogoDataUri();
   return new ImageResponse(
     (
       <div
@@ -29,9 +31,8 @@ export default async function Image() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-          <div style={{ display: "flex", fontSize: 76, fontWeight: 600, color: "#F5F5F2" }}>
-            NYC<span style={{ color: "#D4FF3F" }}> Digital</span> Agency
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- next/og renders plain <img> */}
+          <img src={logo} alt="NYC Digital Agency" width={Math.round(120 * LOGO_ASPECT_RATIO)} height={120} />
           <div style={{ display: "flex", fontSize: 34, color: "#A7A9B4", maxWidth: "900px" }}>
             {BUSINESS.tagline}
           </div>

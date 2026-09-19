@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -11,11 +12,14 @@ export function LeadershipTeaser() {
       <Reveal className="grid gap-8 sm:grid-cols-3">
         {TEAM.map((leader) => (
           <Link key={leader.name} href="/about" className="group flex flex-col gap-4">
-            <div className="flex aspect-square items-center justify-center rounded-2xl border border-subtle bg-surface-2 font-mono text-2xl text-secondary transition-colors duration-300 group-hover:border-accent-secondary/60">
-              {leader.name
-                .split(" ")
-                .map((part) => part[0])
-                .join("")}
+            <div className="relative aspect-square overflow-hidden rounded-2xl border border-subtle bg-surface-2 transition-colors duration-300 group-hover:border-accent-secondary/60">
+              <Image
+                src={leader.photo}
+                alt={`${leader.name}, NYC Digital Agency`}
+                fill
+                sizes="(min-width: 640px) 33vw, 100vw"
+                className="object-cover object-top"
+              />
             </div>
             <div>
               <h3 className="text-base font-medium text-primary">{leader.name}</h3>

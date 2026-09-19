@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Newspaper, Images, ShieldCheck, LogOut, ArrowLeft } from "lucide-react";
+import { Logo } from "@/components/ui/logo";
 import { cn } from "@/lib/utils";
 import { useAdminAuth } from "../_lib/adminAuth";
 
@@ -30,7 +31,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             </Link>
             <div>
               <span className="flex items-center gap-2 text-lg font-medium tracking-tight text-primary">
-                NYC<span className="text-accent-primary"> Digital</span> Agency
+                <Logo className="h-7" />
                 <span className="font-mono rounded border border-accent-secondary/40 bg-accent-secondary/10 px-2 py-0.5 text-xs text-accent-secondary">
                   ADMIN
                 </span>

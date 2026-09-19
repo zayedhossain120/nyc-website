@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/ui/logo";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -35,8 +36,8 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-16">
-        <Link href="/" className="font-mono text-lg font-medium tracking-tight text-primary">
-          NYC<span className="text-accent-primary"> Digital</span> Agency
+        <Link href="/" aria-label="NYC Digital Agency home" className="flex items-center">
+          <Logo className="h-9 md:h-10" priority />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

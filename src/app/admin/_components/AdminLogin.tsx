@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ShieldCheck, Lock, Mail, User, ArrowLeft } from "lucide-react";
+import { Logo } from "@/components/ui/logo";
 import { useAdminAuth } from "../_lib/adminAuth";
 
 export default function AdminLogin() {
@@ -65,8 +66,9 @@ export default function AdminLogin() {
           <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl border border-accent-secondary/30 bg-accent-secondary/10 text-accent-secondary">
             <ShieldCheck className="h-6 w-6" />
           </div>
-          <h1 className="text-2xl font-medium tracking-tight text-primary">
-            NYC<span className="text-accent-primary"> Digital</span> Agency
+          <h1 className="flex justify-center">
+            <Logo className="h-12" priority />
+            <span className="sr-only">NYC Digital Agency admin login</span>
           </h1>
           <p className="mt-1 font-mono text-xs text-secondary">
             {needsSetup ? "Create the first administrator account" : "Sign in to manage content"}

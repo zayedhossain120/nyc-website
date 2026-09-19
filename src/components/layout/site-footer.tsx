@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
 
 const FOOTER_COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
   {
@@ -53,9 +54,9 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-7xl flex-col gap-16 px-6 py-16 md:px-16">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
-            <span className="font-mono text-lg font-medium tracking-tight text-primary">
-              NYC<span className="text-accent-primary"> Digital</span> Agency
-            </span>
+            <Link href="/" aria-label="NYC Digital Agency home" className="w-fit">
+              <Logo className="h-10" />
+            </Link>
             <p className="max-w-xs text-sm text-secondary">
               New York&apos;s engineering-first digital agency — we build the software, run the
               growth, and automate the operations.

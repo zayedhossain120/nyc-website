@@ -8,7 +8,7 @@
  *
  * Replace in this order of impact:
  *   1. TESTIMONIALS  — real client quotes (with permission), real names/titles
- *   2. TEAM          — real leadership; photos are already in /public/team
+ *   2. TEAM          — real people; add bios only if factual
  *   3. COMPANY_STATS — only numbers you can back up
  *   4. INDUSTRIES    — only industries you have actually shipped for
  */
@@ -71,31 +71,35 @@ export const TESTIMONIALS: PlaceholderTestimonial[] = [
   },
 ];
 
-export interface PlaceholderLeader {
+export interface TeamMember {
   name: string;
   title: string;
-  bio: string;
-  specialty: string;
+  /** Path under /public. Photos are cropped to a square in the UI, face kept near the top. */
+  photo: string;
+  bio?: string;
+  specialty?: string;
 }
 
-export const TEAM: PlaceholderLeader[] = [
+/**
+ * Real team. Order is display order (leadership first). Add `bio` and
+ * `specialty` only with facts you can stand behind: they are shown on the About
+ * page when present.
+ */
+export const TEAM: TeamMember[] = [
   {
-    name: "Elena Marchetti",
-    title: "Chief Executive Officer",
-    bio: "Former engineering lead at a NYC fintech. Started the agency after watching too many firms bill hours instead of outcomes.",
-    specialty: "Client Strategy & Fixed-Price Delivery",
+    name: "Tanvir Siddique",
+    title: "Founder & CEO",
+    photo: "/team/tanvir.png",
   },
   {
-    name: "James Okafor",
-    title: "Chief Operating Officer",
-    bio: "Runs the operational backbone: proposals, staffing, and the fixed-price guarantee that makes every deadline real.",
-    specialty: "Operations & Delivery",
+    name: "Zayed Hossain",
+    title: "Founder & BDE",
+    photo: "/team/zayed.png",
   },
   {
-    name: "Ravi Deshmukh",
-    title: "Chief Technology Officer",
-    bio: "Fifteen years shipping production systems, from ad-tech at scale to healthcare compliance. Sets the technical bar for every engagement.",
-    specialty: "Architecture & AI Systems",
+    name: "Jaker Hossain",
+    title: "Founder & COO",
+    photo: "/team/Jaker Hossain.png",
   },
 ];
 

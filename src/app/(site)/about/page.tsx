@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { FinalCta } from "@/components/sections/home/final-cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Badge } from "@/components/ui/badge";
@@ -82,21 +83,26 @@ export default function AboutPage() {
           <Reveal className="grid gap-8 sm:grid-cols-3">
             {TEAM.map((leader) => (
               <div key={leader.name} className="flex flex-col gap-4">
-                <div className="flex aspect-square items-center justify-center rounded-2xl border border-subtle bg-surface-2 font-mono text-2xl text-secondary">
-                  {leader.name
-                    .split(" ")
-                    .map((part) => part[0])
-                    .join("")}
+                <div className="relative aspect-square overflow-hidden rounded-2xl border border-subtle bg-surface-2">
+                  <Image
+                    src={leader.photo}
+                    alt={`${leader.name}, NYC Digital Agency`}
+                    fill
+                    sizes="(min-width: 640px) 33vw, 100vw"
+                    className="object-cover object-top"
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <div>
                     <h3 className="text-base font-medium text-primary">{leader.name}</h3>
                     <p className="text-sm text-muted">{leader.title}</p>
                   </div>
-                  <p className="text-sm text-secondary">{leader.bio}</p>
-                  <Badge tone="neutral" className="w-fit">
-                    {leader.specialty}
-                  </Badge>
+                  {leader.bio && <p className="text-sm text-secondary">{leader.bio}</p>}
+                  {leader.specialty && (
+                    <Badge tone="neutral" className="w-fit">
+                      {leader.specialty}
+                    </Badge>
+                  )}
                 </div>
               </div>
             ))}

@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { CASE_STUDIES } from "@/data/case-studies";
+import { LOGO_ASPECT_RATIO, getLogoDataUri } from "@/lib/og-logo";
 
 export const alt = "NYC Digital Agency Case Study";
 export const size = { width: 1200, height: 630 };
@@ -8,6 +9,7 @@ export const contentType = "image/png";
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const study = CASE_STUDIES.find((item) => item.slug === slug);
+  const logo = await getLogoDataUri();
 
   return new ImageResponse(
     (
@@ -50,9 +52,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           )}
         </div>
 
-        <div style={{ display: "flex", fontSize: 26, color: "#A7A9B4" }}>
-          NYC<span style={{ color: "#D4FF3F" }}> Digital</span> Agency
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element -- next/og renders plain <img> */}
+        <img src={logo} alt="NYC Digital Agency" width={Math.round(56 * LOGO_ASPECT_RATIO)} height={56} />
       </div>
     ),
     { ...size },
