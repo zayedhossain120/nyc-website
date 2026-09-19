@@ -21,6 +21,15 @@ remotePatterns.push(
 );
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/services/marketing-seo/local-seo-pa",
+        destination: "/services/marketing-seo/local-seo-nyc",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
