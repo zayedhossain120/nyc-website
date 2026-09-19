@@ -55,10 +55,12 @@ function CustomCursorImpl() {
         aria-hidden
         className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full border border-accent-primary/60"
         style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
+        // Size stays fixed on hover; the ring fills with a soft tint instead of growing.
         animate={{
-          width: isHovering ? 56 : 32,
-          height: isHovering ? 56 : 32,
+          width: 32,
+          height: 32,
           opacity: isHovering ? 1 : 0.5,
+          backgroundColor: isHovering ? "rgba(212, 255, 63, 0.16)" : "rgba(212, 255, 63, 0)",
         }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       />

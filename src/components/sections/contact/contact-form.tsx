@@ -174,7 +174,6 @@ export function ContactForm() {
         <Button
           type="button"
           variant="ghost"
-          magnetic={false}
           onClick={() => setStep((current) => Math.max(0, current - 1))}
           className={cn(step === 0 && "invisible")}
         >
