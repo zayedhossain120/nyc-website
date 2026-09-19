@@ -180,26 +180,42 @@ export function blogPostingSchema({
   path,
   authorName,
   datePublished,
+  dateModified,
+  image,
+  keywords,
+  wordCount,
 }: {
   headline: string;
   description: string;
   path: string;
-  authorName: string;
+  /** Person's name. Omit to attribute the post to the organization. */
+  authorName?: string;
   datePublished: string;
+  dateModified?: string;
+  image?: string;
+  keywords?: string[];
+  wordCount?: number;
 }) {
+  const url = `${SITE_URL}${path}`;
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline,
+    "@id": `${url}#article`,
+    // Google recommends headlines of 110 characters or fewer.
+    headline: headline.length > 110 ? `${headline.slice(0, 107).trimEnd()}...` : headline,
     description,
-    url: `${SITE_URL}${path}`,
+    url,
+    inLanguage: "en-US",
     datePublished,
-    author: {
-      "@type": "Person",
-      name: authorName,
-    },
+    dateModified: dateModified ?? datePublished,
+    author: authorName
+      ? { "@type": "Person", name: authorName }
+      : { "@id": ORGANIZATION_ID },
     publisher: { "@id": ORGANIZATION_ID },
-    mainEntityOfPage: `${SITE_URL}${path}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    ...(image ? { image: [image] } : {}),
+    ...(keywords && keywords.length > 0 ? { keywords: keywords.join(", ") } : {}),
+    ...(wordCount ? { wordCount } : {}),
   };
 }
 

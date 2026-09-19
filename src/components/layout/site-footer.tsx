@@ -27,7 +27,7 @@ const FOOTER_COLUMNS: { heading: string; links: { label: string; href: string }[
     heading: "Resources",
     links: [
       { label: "Pricing", href: "/pricing" },
-      { label: "Insights", href: "/blog" },
+      { label: "Blog", href: "/blog" },
       { label: "FAQ", href: "/faq" },
       { label: "Contact", href: "/contact" },
     ],

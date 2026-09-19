@@ -379,7 +379,7 @@ function renderParagraphOrElement(node: ElementNode, key: number): ReactNode {
           tag: "img",
           props: {
             src: only.trim(),
-            alt: "Blog Image",
+            alt: "",
             loading: "lazy",
           },
           children: [],
@@ -393,7 +393,8 @@ function renderParagraphOrElement(node: ElementNode, key: number): ReactNode {
 }
 
 function renderElement(node: ElementNode, key: number): ReactNode {
-  const tag = node.tag.toLowerCase();
+  // The page title is the only <h1>; demote any <h1> written inside the article body.
+  const tag = node.tag.toLowerCase() === "h1" ? "h2" : node.tag.toLowerCase();
 
   if (tag === "img") {
     const src = typeof node.props.src === "string" ? node.props.src : "";
@@ -441,8 +442,8 @@ function htmlToReact(html: string): ReactNode[] {
 
 export function BlogContent({ content = "" }: BlogContentProps) {
   if (!content) {
-    return <article className={ARTICLE_CLASSES} />;
+    return <div className={ARTICLE_CLASSES} />;
   }
 
-  return <article className={ARTICLE_CLASSES}>{htmlToReact(content)}</article>;
+  return <div className={ARTICLE_CLASSES}>{htmlToReact(content)}</div>;
 }

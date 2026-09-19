@@ -25,25 +25,22 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
-
+  // lastModified is only set where we have a real date (blog posts). A timestamp of
+  // "now" on every URL changes on each request, and search engines learn to ignore it.
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
     url: `${SITE_URL}${route.path}`,
-    lastModified: now,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
 
   const caseStudyEntries: MetadataRoute.Sitemap = CASE_STUDIES.map((study) => ({
     url: `${SITE_URL}/work/${study.slug}`,
-    lastModified: now,
     changeFrequency: "monthly",
     priority: 0.6,
   }));
 
   const serviceEntries: MetadataRoute.Sitemap = SERVICE_DETAILS.map((service) => ({
     url: `${SITE_URL}/services/${service.pillarId}/${service.slug}`,
-    lastModified: now,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
