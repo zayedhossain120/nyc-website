@@ -31,7 +31,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             </Link>
             <div>
               <span className="flex items-center gap-2 text-lg font-medium tracking-tight text-primary">
-                <Logo className="h-7" />
+                <Link href="/admin" aria-label="Admin dashboard" className="flex items-center">
+                  <Logo className="h-7" />
+                </Link>
                 <span className="font-mono rounded border border-accent-secondary/40 bg-accent-secondary/10 px-2 py-0.5 text-xs text-accent-secondary">
                   ADMIN
                 </span>

@@ -67,8 +67,9 @@ export default function AdminLogin() {
             <ShieldCheck className="h-6 w-6" />
           </div>
           <h1 className="flex justify-center">
-            <Logo className="h-12" priority />
-            <span className="sr-only">NYC Digital Agency admin login</span>
+            <Link href="/" aria-label="NYC Digital Agency home">
+              <Logo className="h-12" priority />
+            </Link>
           </h1>
           <p className="mt-1 font-mono text-xs text-secondary">
             {needsSetup ? "Create the first administrator account" : "Sign in to manage content"}

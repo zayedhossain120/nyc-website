@@ -10,7 +10,6 @@
  *   1. TESTIMONIALS  — real client quotes (with permission), real names/titles
  *   2. TEAM          — real people; add bios only if factual
  *   3. COMPANY_STATS — only numbers you can back up
- *   4. INDUSTRIES    — only industries you have actually shipped for
  */
 
 export interface PlaceholderTestimonial {
@@ -21,18 +20,13 @@ export interface PlaceholderTestimonial {
   metric: string;
   /** Where the client is based, used for local-relevance copy. */
   location: string;
+  /** Project image under /public/work. */
+  image: string;
+  /** Short description of the project shown in the image alt text. */
+  project: string;
 }
 
 export const TESTIMONIALS: PlaceholderTestimonial[] = [
-  {
-    quote:
-      "We were stuck with a slow, template-built site. NYC Digital Agency rebuilt it on Next.js and our Core Web Vitals went from failing to green across the board in a single sprint.",
-    name: "Dana Whitfield",
-    title: "VP of Engineering",
-    company: "Harborview Health",
-    metric: "Core Web Vitals: all green",
-    location: "Midtown, Manhattan",
-  },
   {
     quote:
       "Our front desk was buried in manual intake. Their AI automation took a 3-hour process down to about 12 minutes per case, and the team actually uses it.",
@@ -41,15 +35,8 @@ export const TESTIMONIALS: PlaceholderTestimonial[] = [
     company: "Ionescu & Reyes Law",
     metric: "18 hrs/week saved",
     location: "Financial District, Manhattan",
-  },
-  {
-    quote:
-      "We finally have one New York team accountable for both the build and the growth numbers. Same-day replies, and they're a subway ride away when we want to whiteboard.",
-    name: "Priya Anand",
-    title: "Founder",
-    company: "Kettletown Supply Co.",
-    metric: "2.4x conversion rate",
-    location: "Williamsburg, Brooklyn",
+    image: "/work/jacob-jones-legal.webp",
+    project: "law firm website and intake automation",
   },
   {
     quote:
@@ -59,6 +46,41 @@ export const TESTIMONIALS: PlaceholderTestimonial[] = [
     company: "Astoria Row Realty",
     metric: "+61% organic leads",
     location: "Astoria, Queens",
+    image: "/work/renter-real-estate.webp",
+    project: "real estate rental listings platform",
+  },
+  {
+    quote:
+      "We were stuck with a slow, template-built site. NYC Digital Agency rebuilt it on Next.js and our Core Web Vitals went from failing to green across the board in a single sprint.",
+    name: "Dana Whitfield",
+    title: "VP of Engineering",
+    company: "Harborview Health",
+    metric: "Core Web Vitals: all green",
+    location: "Midtown, Manhattan",
+    image: "/work/healthcare-ecommerce.webp",
+    project: "healthcare e-commerce platform",
+  },
+  {
+    quote:
+      "We finally have one New York team accountable for both the build and the growth numbers. Same-day replies, and they're a subway ride away when we want to whiteboard.",
+    name: "Priya Anand",
+    title: "Founder",
+    company: "Kettletown Supply Co.",
+    metric: "2.4x conversion rate",
+    location: "Williamsburg, Brooklyn",
+    image: "/work/nola-furniture-ecommerce.webp",
+    project: "furniture e-commerce storefront",
+  },
+  {
+    quote:
+      "We had a prototype and no idea how to make it multi-tenant. They shipped a billing-ready SaaS MVP with clean architecture, and our first paying customers signed up within weeks of launch.",
+    name: "Sofia Alvarez",
+    title: "Co-Founder & CEO",
+    company: "Fieldstone Commerce",
+    metric: "MVP launched in 14 weeks",
+    location: "Flatiron, Manhattan",
+    image: "/work/ecommerce-saas.webp",
+    project: "e-commerce SaaS platform",
   },
   {
     quote:
@@ -68,6 +90,19 @@ export const TESTIMONIALS: PlaceholderTestimonial[] = [
     company: "Battery Point Capital",
     metric: "Passed compliance review first time",
     location: "Lower Manhattan",
+    image: "/work/security-operations.webp",
+    project: "security operations dashboard",
+  },
+  {
+    quote:
+      "Parents, teachers and admins all needed something different from the same platform. They designed it so each group finds what they need in seconds, and the launch went smoothly.",
+    name: "Hannah Brooks",
+    title: "Head of Digital",
+    company: "Bridgeway Academy",
+    metric: "3 user roles, one platform",
+    location: "Downtown Brooklyn",
+    image: "/work/sprolt-education-institute.webp",
+    project: "education institute website and portal",
   },
 ];
 
@@ -109,14 +144,3 @@ export const COMPANY_STATS = {
   clientRetentionPercent: 92,
   teamSize: 18,
 } as const;
-
-export const INDUSTRIES = [
-  "FinTech",
-  "Real Estate",
-  "Healthcare",
-  "Legal",
-  "Hospitality",
-  "Fashion & Retail",
-  "Media",
-  "Startups",
-] as const;
