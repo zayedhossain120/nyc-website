@@ -128,7 +128,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     name: "Zayed Hossain",
-    title: "Founder & BDE",
+    title: "Founder & CTO",
     photo: "/team/zayed.png",
   },
   {
