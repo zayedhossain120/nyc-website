@@ -16,6 +16,7 @@ import { serializeDoc } from "@/lib/serialize";
 import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo/schema";
 import Blog from "@/models/Blog";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
+import { BOOKING_URL } from "@/lib/site-config";
 
 interface BlogDetail {
   _id: string;
@@ -279,7 +280,7 @@ export default async function BlogDetailPage({
             project and get a fixed-price scope within one business day.
           </p>
           <div className="flex flex-wrap items-center gap-3">
-            <Button href="/contact" variant="primary">
+            <Button href={BOOKING_URL} target="_blank" rel="noopener noreferrer" variant="primary">
               Book Your Strategy Call
             </Button>
             {SERVICE_LINKS.map((link) => (

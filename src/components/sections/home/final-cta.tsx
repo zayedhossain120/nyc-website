@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { BOOKING_URL } from "@/lib/site-config";
 
 export function FinalCta() {
   return (
@@ -12,7 +13,7 @@ export function FinalCta() {
           Tell us what you&apos;re building. We&apos;ll respond within one business day with a
           fixed-price scope, not a sales call.
         </p>
-        <Button href="/contact" variant="primary">
+        <Button href={BOOKING_URL} target="_blank" rel="noopener noreferrer" variant="primary">
           Book Your Strategy Call
         </Button>
       </Reveal>

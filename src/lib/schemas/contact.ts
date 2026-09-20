@@ -28,9 +28,15 @@ export const contactFormSchema = z.object({
   name: z.string().trim().min(2, "Enter your full name"),
   email: z.string().trim().min(1, "Enter your work email").email("Enter a valid email address"),
   company: z.string().trim().min(2, "Enter your company name"),
-  service: z.enum(SERVICE_OPTIONS.map((option) => option.value) as [string, ...string[]]),
-  budget: z.enum(BUDGET_OPTIONS.map((option) => option.value) as [string, ...string[]]),
-  timeline: z.enum(TIMELINE_OPTIONS.map((option) => option.value) as [string, ...string[]]),
+  service: z.enum(SERVICE_OPTIONS.map((option) => option.value) as [string, ...string[]], {
+    error: "Select a service",
+  }),
+  budget: z.enum(BUDGET_OPTIONS.map((option) => option.value) as [string, ...string[]], {
+    error: "Select a budget range",
+  }),
+  timeline: z.enum(TIMELINE_OPTIONS.map((option) => option.value) as [string, ...string[]], {
+    error: "Select a timeline",
+  }),
   details: z.string().trim().min(20, "Give us at least a sentence or two about the project"),
   company_website: z.string().max(0).optional(),
 });

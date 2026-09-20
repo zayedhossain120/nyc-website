@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { BOOKING_URL } from "@/lib/site-config";
 
 export function Hero() {
   return (
@@ -32,7 +33,7 @@ export function Hero() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-          <Button href="/contact" variant="primary">
+          <Button href={BOOKING_URL} target="_blank" rel="noopener noreferrer" variant="primary">
             Book Your Strategy Call
           </Button>
           <Button href="/work" variant="ghost">

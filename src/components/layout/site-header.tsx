@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { cn } from "@/lib/utils";
+import { BOOKING_URL } from "@/lib/site-config";
 
 const NAV_LINKS = [
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
   { label: "Process", href: "/process" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Insights", href: "/blog" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export function SiteHeader() {
@@ -53,7 +54,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="/contact" variant="primary" className="!px-5 !py-2.5 text-sm">
+          <Button href={BOOKING_URL} target="_blank" rel="noopener noreferrer" variant="primary" className="!px-5 !py-2.5 text-sm">
             Book a Call
           </Button>
         </div>
@@ -102,7 +103,7 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
-              <Button href="/contact" variant="primary" className="mt-2 w-full">
+              <Button href={BOOKING_URL} target="_blank" rel="noopener noreferrer" variant="primary" className="mt-2 w-full">
                 Book a Call
               </Button>
             </div>

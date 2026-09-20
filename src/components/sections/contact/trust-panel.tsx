@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
+import { Button } from "@/components/ui/button";
+import { BOOKING_URL } from "@/lib/site-config";
 
 const POINTS = [
   { label: "Response Time", value: "Within 1 business day, guaranteed" },
@@ -33,11 +35,14 @@ export function TrustPanel() {
         ))}
       </div>
 
-      <div className="rounded-2xl border border-subtle bg-surface p-6">
+      <div className="flex flex-col items-start gap-4 rounded-2xl border border-subtle bg-surface p-6">
         <p className="text-sm text-secondary">
-          Prefer to talk live? Mention it in the form and we&apos;ll send a scheduling link for a
-          15-minute strategy call once we&apos;ve reviewed your project.
+          Prefer to talk live? Pick a time that suits you and book a strategy call directly on our
+          calendar.
         </p>
+        <Button href={BOOKING_URL} target="_blank" rel="noopener noreferrer" variant="outline">
+          Book a Strategy Call
+        </Button>
       </div>
     </Reveal>
   );
